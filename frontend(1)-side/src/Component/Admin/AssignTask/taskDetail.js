@@ -5,6 +5,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 function TaskDetail() {
     const Navigate = useNavigate()
+    const [empDta , setempDta] = useState([])
     const [taskData , setTaskData] = useState({
         title:"",
         description :"",
@@ -18,6 +19,12 @@ function TaskDetail() {
         axios.get("http://localhost:7000/assign/task-data").then((response)=>{
             setTaskDeatil(response.data)
             // console.log(response.data)
+        })
+    },[])
+    useEffect(()=>{
+        axios.get("http://localhost:7000/emp/empData").then((res)=>{
+            setempDta(res.data)
+            //console.log(res.data)
         })
     },[])
     const handleTaskAdd =()=>{
@@ -97,12 +104,14 @@ function TaskDetail() {
                         <div>
                             <label htmlFor="name">Employee Name :</label>
                                 <select  onChange={(e)=>{setTaskData({...taskData, Name:e.target.value})}}>
-                            
-                                    <option value="Select"></option>
-                                    <option value="Sunil Kurmar">Sunil Kurmar</option>
-                                    <option value="Shikha elibol">Shikha elibol</option>
-                                    <option value="Virath Shekhar">Virath Shekhar</option>
-                                    <option value="Sonal Mogra">Sonal Mogra</option>
+                                    <option>--select--</option>
+                                    {
+                                        empDta?.data?.map((user,id)=>{
+                                            return(
+                                                <option key={id}>{user.full_name}</option>
+                                            )
+                                        })
+                                    }
                                 </select>
                         </div>
                         <div>
