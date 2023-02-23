@@ -2,8 +2,9 @@
 import {Route,Routes,BrowserRouter} from "react-router-dom";
 import TaskDetail from "./Component/Admin/AssignTask/taskDetail";
 import Dashbord from "./Component/Admin/DashBoard/dashbord";
-import EmpDetail from "./Component/Admin/Employee/empDetail";
+import EmpDetail from "./Component/Admin/EmployeeData/empDetail";
 import ManagerDetail from "./Component/Admin/Manager/managerDetail";
+import EmpDashboard from "./Component/Employee/empDashboard";
 import LoginPg from "./Component/User/Login/loginPg";
 import RegisterPg from "./Component/User/Register/registerPg";
 
@@ -17,6 +18,7 @@ function App() {
       <Route path="/emp-data" element={<EmpDetail/>}></Route>
       <Route path="/taskDetail" element={<TaskDetail/>}/>
       <Route path='/manager-data' element={<ManagerDetail/>}></Route>
+      <Route path="/EmpBody" element={<EmpDashboard/>}></Route>
     </Routes>
     </BrowserRouter>
   );

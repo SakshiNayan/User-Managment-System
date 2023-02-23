@@ -16,21 +16,7 @@ router.get('/task-data',async(req,res)=>{
     }
 })
 router.post('/addTask',async(req,res)=>{
-    
-    // const today = new Date()
-    // const option  = {
-    //     day: "numeric",
-    //     month: "long",
-    //     year: "numeric"
-    // }
-    // const option1 = {
-    //     hour: "numeric",
-    //     minute: "numeric",
-    //     hour12: false
-    // }
-    // const day = today.toLocaleDateString("en-Us", option);
-    // const time = today.toLocaleTimeString("en-Us", option1);
-    // const date = day + " " + time;   
+  
     try{
         let data=await taskModel.create({
 

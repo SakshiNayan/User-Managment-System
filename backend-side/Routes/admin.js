@@ -2,7 +2,7 @@ const express=require("express")
 const bcrypt=require("bcryptjs")
 const router=express.Router()
 const jwt=require("jsonwebtoken");
-const bodyparser = require('body-parser')
+//const bodyparser = require('body-parser')
 
 const AdminModel = require('../Model/admin-model');
 const {checkExistingUser, generatePasswordHash} = require("../middleware/auth");
@@ -17,6 +17,7 @@ router.post('/register',async(req,res)=>{
                 email: req.body.email,
                 userName: req.body.userName,
                 password: passwordHash,
+                usertype : req.body.usertype
 
             })
             .then((data)=> { 
@@ -39,7 +40,8 @@ router.post('/login',(req,res)=>{
             bcrypt.compare(req.body.password, data[0].password).then((val)=>{
                 if(val){
                     const authToken = jwt.sign(data[0].userName, process.env.SECRET_KEY);
-                    res.status(200).send({"status": "successfully login", authToken, userName: data[0].userName})
+                    const Usertype = data[0].usertype
+                    res.status(200).send({"status": "successfully login", authToken, userName: data[0].userName, Usertype : Usertype})
                 }
                 else{
                     res.status(400).send("invalid password")

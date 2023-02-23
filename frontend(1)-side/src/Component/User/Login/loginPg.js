@@ -12,7 +12,7 @@ function LoginPg() {
   })
   const [show , setshow]= useState(false)
   const handleLogin=(e)=>{
-    e.preventDefault()            //meaning that the default action that belongs to the event will not occur
+    e.preventDefault()            
     console.log(login)
     if(login.userName ==="" && login.password ===""){
         alert("User and password are requied")
@@ -29,7 +29,13 @@ function LoginPg() {
               console.log(loginData.data.userName)
                 localStorage.setItem("authorization", loginData.data.authToken);
                 localStorage.setItem("userName", loginData.data.userName)
-              navigate("/body");
+              // navigate("/body");
+              console.log(loginData.data.Usertype)
+              if(loginData.data.Usertype === "Employee"){
+                navigate("/EmpBody")
+              }else{
+                navigate("/body");
+              }
         }).catch((err)=>{
           setshow(!show)
           setTimeout(()=>{

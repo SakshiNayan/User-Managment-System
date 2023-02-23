@@ -12,7 +12,8 @@ function RegisterPg() {
     userName: "",
     adminFullname:"",
     email:"",
-    password: ""
+    password: "",
+    usertype :""
   })
   const [confirmpass, setconfirmPass]= useState({confirmPassword: ""});
 
@@ -27,7 +28,6 @@ function RegisterPg() {
         return;
     }else{
       axios({
-        // url: "https://todo-server-pg.herokuapp.com/userRegister/register",
         url: "http://localhost:7000/admin/register",
         method: "POST",
         headers: {
@@ -74,6 +74,11 @@ function RegisterPg() {
                 <div className='field'>
                     <input type="password" required={true}  placeholder='Confirm-Pass' onChange={(e)=>{setconfirmPass({...confirmpass, confirmPassword: e.target.value})}}/>
                 </div >
+                <div className='radio'>
+                  <label htmlFor="name">Register As :</label>
+                  <input type="radio" value="Manager" onChange={(e)=>{setData({...data, usertype: e.target.value})}}   style={{width:"20px",marginLeft:"20px"}}/>Manager
+                  <input type="radio" value="Employee"  onChange={(e)=>{setData({...data, usertype: e.target.value})}}  style={{width:"20px",marginLeft:"20px"}}/>Employee
+                </div>
                 <div className='field'>
                     <button type="submit" className='regBtn'>Register</button>
                 </div>

@@ -4,6 +4,7 @@ const schema=new mongoose.Schema({
     adminFullname: String,
     email:String,
     password:String,
+    usertype : String
 });
 
 const AdminModel =new mongoose.model("admin",schema);

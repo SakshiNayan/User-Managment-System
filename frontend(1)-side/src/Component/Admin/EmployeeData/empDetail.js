@@ -27,9 +27,7 @@ function EmpDetail() {
             axios({
                 url:"http://localhost:7000/emp/addEmp",
                 method: "POST",
-                // headers :{
 
-                // },
                 data : empdetails
             }).then((post)=>{
                 Navigate('/emp-data')
@@ -113,7 +111,3 @@ function EmpDetail() {
 }
 
 export default EmpDetail
-
-
-
-
